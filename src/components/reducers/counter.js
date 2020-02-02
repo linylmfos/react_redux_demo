@@ -1,9 +1,11 @@
+import * as actions from "../../constants";
+
 const counter = ( state = 0, action ) => {
     switch(action.type) {
-        case "INCREMENT":
-            return state + 1;
-        case "DECREMENT": 
-           return state - 1;
+        case actions.INCREMENT:
+            return state + action.num;
+        case actions.DECREMENT: 
+           return state - action.num;
         default: 
             return state
     }
