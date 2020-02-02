@@ -1,12 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { createStore } from "redux";
+import reducer from "./components/reducers/counter"
+import { Provider } from "react-redux";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// 创建store仓库
+const store = createStore(reducer);
+// store.subscribe(() => console.log("state:", store.getState()));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// const render = () => {
+//     ReactDOM.render(<App
+//         onIncrement = { () => store.dispatch({ type: "INCREMENT" }) }
+//         onDecrement = {() =>  store.dispatch({ type: "DECREMENT" })}
+//         value = { store.getState() }
+//         />,
+//          document.getElementById('root'));
+// };
+
+// render();
+// store.subscribe(render)
+
+ReactDOM.render(
+    <Provider store={ store } >  
+        <App />
+    </Provider>,
+    document.getElementById('root'));
+
+
